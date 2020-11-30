@@ -42,7 +42,7 @@
     // some POINTS (called "geometry") that define the object
     // a MATERIAL that defines how the faces of the geometry are rendered
     const geometry1 = new THREE.BoxGeometry();
-    const material1 = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const material1 = new THREE.MeshBasicMaterial({ color: 0x0000ff });
 
     //you put these together by making a MESH
     const cube = new THREE.Mesh(geometry1, material1);
@@ -56,33 +56,38 @@
 
     //sphere
     const geometry2 = new THREE.SphereGeometry(0.75, 8, 8); //radius, resX, resY
-    const material2 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const material2 = new THREE.MeshBasicMaterial({ color: 0xffd700 });
     const sphere = new THREE.Mesh(geometry2, material2);
     sphere.position.x = -2; //move it to the left
     scene.add(sphere);
 
     //knot
     const geometry3 = new THREE.TorusKnotGeometry(0.6, 0.1, 32, 4);
-    const material3 = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    const material3 = new THREE.MeshBasicMaterial({ color: 0x7a7a7a });
     const knot = new THREE.Mesh(geometry3, material3);
     knot.position.x = 2; //move it to the right
     scene.add(knot);
 
     //torus
     const geometry4 = new THREE.TorusGeometry(0.6, .1, 8, 8);
-    const material4 = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const material4 = new THREE.MeshBasicMaterial({ color: 0xacffac });
     const torus = new THREE.Mesh(geometry4, material4);
     torus.position.y = 2; //move it up
     scene.add(torus);
 
     //torus
     const geometry5 = new THREE.DodecahedronGeometry(.75);
-    const material5 = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+    const material5 = new THREE.MeshBasicMaterial({ color: 0xffacac });
     const dodecahedron = new THREE.Mesh(geometry5, material5);
     dodecahedron.position.y = -2; //move it down
     scene.add(dodecahedron);
-
-
+    
+    //cylinder
+    const geometry6 = new THREE.CylinderBufferGeometry(5,5,20,32);
+    const material6 = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    const cylinder = new THREE.Mesh( geometry6, material6 );
+    scene.add( cylinder );  
+	  
     //setting the mesh material to "wireframe = true" can make it easier to see the faces of the geometry 
     if (wireframe) {
       material1.wireframe = true;
@@ -90,6 +95,7 @@
       material3.wireframe = true;
       material4.wireframe = true;
       material5.wireframe = true;
+      material6.wireframe = true;
     }
 
     const animate = function () {
@@ -102,6 +108,7 @@
       rotateObject(torus, 0.01, -0.02);
       rotateObject(knot, -0.02, 0.01);
       rotateObject(dodecahedron, -0.01, 0.01);
+      rotateObject(cylinder,-0.01,0.01);
 
       renderer.render(scene, camera);
     };
